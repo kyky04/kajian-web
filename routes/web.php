@@ -23,3 +23,5 @@ Route::get('/home', 'HomeController@index');
 Route::resource('mosques', 'MosqueController');
 
 Route::resource('kajians', 'KajianController');
+
+Route::resource('jadwals', 'JadwalController');

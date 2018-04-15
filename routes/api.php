@@ -23,3 +23,5 @@ Route::resource('mosques', 'MosqueAPIController');
 Route::resource('kajian', 'KajianAPIController');
 Route::post('kajian', 'KajianAPIController@kajiaByDate');
 Route::get('kajian-mosque/{id}', 'KajianAPIController@kajianByMosque');
+
+Route::resource('jadwals', 'JadwalAPIController');

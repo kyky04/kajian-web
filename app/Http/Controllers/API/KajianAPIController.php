@@ -39,7 +39,12 @@ class KajianAPIController extends AppBaseController
     {
         $this->kajianRepository->pushCriteria(new RequestCriteria($request));
         $this->kajianRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $kajians = $this->kajianRepository->with('mosque')->all();
+        $kajians = Kajian::with('mosque')
+                        ->when($request->search, function($q) use ($request){
+                            $q->where('pemateri', 'like', '%'.$request->search.'%');
+                        })
+                        ->orderBy('waktu')
+                        ->get();
 
         return $this->sendResponse($kajians->toArray(), 'Kajians retrieved successfully');
     }
